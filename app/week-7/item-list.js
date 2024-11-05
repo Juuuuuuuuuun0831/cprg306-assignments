@@ -1,0 +1,41 @@
+"use client";
+
+import React, { useState } from 'react';
+import Item from './items';
+
+export default function ItemList({ items }) {
+  const [sortBy, setSortBy] = useState('name');
+
+  const sortedItemList = [...items].sort((a, b) => {
+    if (sortBy === 'name') {
+      return a.name.localeCompare(b.name);
+    } else if (sortBy === 'category') {
+      return a.category.localeCompare(b.category);
+    }
+    return 0;
+  });
+
+  return (
+    <div className="max-w-md mx-auto mt-4">
+      <div className="flex justify-center mb-4">
+        <button
+          onClick={() => setSortBy('name')}
+          className={`p-2 rounded-lg mr-2 ${sortBy === 'name' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+        >
+          Name
+        </button>
+        <button
+          onClick={() => setSortBy('category')}
+          className={`p-2 rounded-lg ${sortBy === 'category' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+        >
+          Category
+        </button>
+      </div>
+      <ul>
+        {sortedItemList.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
+      </ul>
+    </div>
+  );
+}
