@@ -45,6 +45,11 @@ export default function HomePage() {
             <a>Week 9 Assignment</a>
           </Link>
         </li>
+        <li>
+          <Link href="/week-10" legacyBehavior>
+            <a>Week 10 Assignment</a>
+          </Link>
+        </li>
       </ul>
     </div>
   );
